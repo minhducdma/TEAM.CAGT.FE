@@ -17,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
     ContentLayoutComponent,
     NavbarLayoutComponent,
     FooterLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
   imports: [
     // angular
@@ -33,9 +33,8 @@ import { AppRoutingModule } from './app-routing.module';
     // app
     AppRoutingModule,
 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

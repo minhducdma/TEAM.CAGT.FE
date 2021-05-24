@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
@@ -8,9 +8,9 @@ import { IResponseData } from 'src/app/shared/models/response-data.model';
 import { ITokenInfo, IUserInfo } from 'src/app/shared/auth/models/user-token.model';
 import { AuthStore } from 'src/app/shared/auth/authStore/auth.store';
 import { SecurityUtil } from 'src/app/shared/utils/security';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { HandlerService } from './handler-error.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({ providedIn: 'root' }) 
@@ -19,14 +19,23 @@ export class AuthService {
     private jwtToken = 'jwt-token';
     private identityKey = 'keyLogin';
     private helper = new JwtHelperService();
+
+    private http: HttpClient;
+    //protected cookieService: CookieService;
+    private authStore: AuthStore;
+    private router: Router;
+    private handlerError: HandlerService;
     
     constructor(
-        private http: HttpClient,
-        private cookieService: CookieService,
-        private authStore: AuthStore,
-        private router: Router,
-        private handlerError: HandlerService,
-    ){}
+        private injector : Injector,
+        //protected cookieService: CookieService
+    ){
+        debugger;
+        //this.cookieService = injector.get(CookieService);
+        this.authStore = injector.get(AuthStore);
+        this.router = injector.get(Router);
+        this.handlerError = injector.get(HandlerService);
+    }
 
     doLogout(model: any) {
         return this.http
@@ -95,7 +104,7 @@ export class AuthService {
 
     getAccessToken() {
         const userToken = JSON.parse(
-            localStorage.getItem(this.jwtToken) || '{}'
+            localStorage.getItem(this.jwtToken)
         ) as ITokenInfo;
         if (!userToken) {
             return;
@@ -106,7 +115,7 @@ export class AuthService {
 
     getExpiredTime() {
         const userToken = JSON.parse(
-            localStorage.getItem(this.jwtToken) || '{}'
+            localStorage.getItem(this.jwtToken)
         ) as ITokenInfo;
         if (!userToken) {
             return;
@@ -124,8 +133,8 @@ export class AuthService {
     }
 
     isExcuteRefreshToken() {
-        let expiredTime = this.getExpiredTime() || 0;
-        let refreshTime = this.getTimeSkipUtilForRefreshToken() || 0;
+        let expiredTime = this.getExpiredTime();
+        let refreshTime = this.getTimeSkipUtilForRefreshToken();
         // Nếu token lớn hơn 5 phút thì refresh token
         return (
             expiredTime - refreshTime > 5 * 60
@@ -143,25 +152,25 @@ export class AuthService {
             return;
         }
 
-        const expiryRemaining = userInfo.exp || 0 - Math.floor(new Date().getTime() / 1000);
+        const expiryRemaining = userInfo.exp - Math.floor(new Date().getTime() / 1000);
         // delay 5s chờ refresh token khi chuyển page
         return expiryRemaining > -5;
     }
 
-    setCookieKeyLogin(value: string) {
-        this.cookieService.set(this.identityKey, value);
-    }
+    // setCookieKeyLogin(value: string) {
+    //     this.cookieService.set(this.identityKey, value);
+    // }
 
-    getCookieKeyLogin() {
-        const key = this.cookieService.get(this.identityKey);
-        if (key) {
-            return key;
-        }
+    // getCookieKeyLogin() {
+    //     const key = this.cookieService.get(this.identityKey);
+    //     if (key) {
+    //         return key;
+    //     }
 
-        const newKey = SecurityUtil.generateGuid();
-        this.setCookieKeyLogin(newKey);
-        return newKey;
-    }
+    //     const newKey = SecurityUtil.generateGuid();
+    //     this.setCookieKeyLogin(newKey);
+    //     return newKey;
+    // }
 
     clearAll() {
         localStorage.clear();
@@ -178,7 +187,7 @@ export class AuthService {
             return;
         }
 
-        let expriedTime = userInfo.exp || 0;
+        let expriedTime = userInfo.exp;
 
         return expriedTime - Math.floor(new Date().getTime() / 1000);
     }
@@ -201,7 +210,7 @@ export class AuthService {
 
     getRefreshToken() {
         const userToken = JSON.parse(
-            localStorage.getItem(this.jwtToken) || '{}'
+            localStorage.getItem(this.jwtToken)
         ) as ITokenInfo;
         if (!userToken) {
             return;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,14 +10,19 @@ import { AuthService } from 'src/app/core/service/auth.service';
     templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-    private loginForm!: FormGroup;
+    loginForm: FormGroup;
     private sub = new Subscription();
 
+
+    private formBuilder: FormBuilder;
+    private router: Router;
+    private authService: AuthService;
     constructor(
-        private formBuilder: FormBuilder,
-        private router: Router,
-        private authService: AuthService
+        private injector: Injector
     ) {
+        this.formBuilder = injector.get(FormBuilder);
+        this.router = injector.get(Router);
+        this.authService = injector.get(AuthService);
         this.createForm();
     }
 
@@ -31,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        const formData = this.loginForm.value;
+        const formData = this.loginForm?.value;
         this.sub = this.authService
             .doLogin(formData)
             .pipe(
