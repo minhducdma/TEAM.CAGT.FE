@@ -1,5 +1,7 @@
 const prefixACL = 'ACL/';
 export const UrlConstant = {
+    BASE_URL: 'http://dev.apivnu-gateway.epmt.com.vn:2051/',
+
     API: {
         //List API in here
 

@@ -15,23 +15,21 @@ import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' }) 
 export class AuthService {
-    private apiUrl: string | undefined;
+    private apiUrl: string = UrlConstant.BASE_URL;
     private jwtToken = 'jwt-token';
     private identityKey = 'keyLogin';
     private helper = new JwtHelperService();
 
     private http: HttpClient;
-    //protected cookieService: CookieService;
+    private cookieService: CookieService;
     private authStore: AuthStore;
     private router: Router;
     private handlerError: HandlerService;
     
     constructor(
-        private injector : Injector,
-        //protected cookieService: CookieService
+        private injector : Injector
     ){
-        debugger;
-        //this.cookieService = injector.get(CookieService);
+        this.cookieService = injector.get(CookieService);
         this.authStore = injector.get(AuthStore);
         this.router = injector.get(Router);
         this.handlerError = injector.get(HandlerService);
