@@ -1,0 +1,11 @@
+.footer_img::after{
+    background: url('../img/wave_258.png');
+    
+    z-index: 10;
+    width: 100%;
+    bottom: 20px;
+   
+    background-repeat: no-repeat;
+    height: 100px;
+    
+}
