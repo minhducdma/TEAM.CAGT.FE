@@ -1,21 +1,6 @@
 
-this.draw = function() {
-  var c = document.getElementById("canv");
-  if(c.getContext) {
-      var context = canvas.getContext("2d");
-      for(var i = 0; i < width; i++) {
-          for(var j = 0; j < height; j++) {
-              if(isLive(i, j)) {
-                  context.fillStyle = "lightblue";
-              }
-              else {
-                  context.fillStyle = "yellowgreen";
-              }
-              context.fillRect(i*15, j*15, 14, 14);
-          }
-      }
-  }
-// var c = document.getElementById("canv");
+
+var c = document.getElementById("canv").getContext("2d");
 // var $ = c.getContext("2d");
 var w = c.width = window.innerWidth;
 var h = c.height = window.innerHeight;
@@ -30,7 +15,7 @@ function txt() {
 var rad = 800, til = 1, num = 5;
 var alph = 0.9, pov = 400; 
 var midX = w / 2, midY = h / 2;
-var maxZ = pov - 2, cnt = til - 1; 
+var maxZ = pov - 2, cnt = til - 1;
 var _arr = {}, dump = {};
 var spX = 0.1, spY = 0.1, spZ = 0.1;
 var grav = -0, psz = 5;
