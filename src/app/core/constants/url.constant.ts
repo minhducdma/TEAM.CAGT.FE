@@ -1,6 +1,8 @@
+import { environment } from "src/environments/environment";
+
 const prefixACL = 'ACL/';
 export const UrlConstant = {
-    BASE_URL: 'http://dev.apivnu-gateway.epmt.com.vn:2051/',
+    BASE_URL: environment.apiUrl,
 
     API: {
         //List API in here

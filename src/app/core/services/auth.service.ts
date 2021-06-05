@@ -155,20 +155,20 @@ export class AuthService {
         return expiryRemaining > -5;
     }
 
-    // setCookieKeyLogin(value: string) {
-    //     this.cookieService.set(this.identityKey, value);
-    // }
+        setCookieKeyLogin(value: string) {
+            this.cookieService.set(this.identityKey, value);
+        }
 
-    // getCookieKeyLogin() {
-    //     const key = this.cookieService.get(this.identityKey);
-    //     if (key) {
-    //         return key;
-    //     }
+        getCookieKeyLogin() {
+            const key = this.cookieService.get(this.identityKey);
+            if (key) {
+                return key;
+            }
 
-    //     const newKey = SecurityUtil.generateGuid();
-    //     this.setCookieKeyLogin(newKey);
-    //     return newKey;
-    // }
+            const newKey = SecurityUtil.generateGuid();
+            this.setCookieKeyLogin(newKey);
+            return newKey;
+        }
 
     clearAll() {
         localStorage.clear();
