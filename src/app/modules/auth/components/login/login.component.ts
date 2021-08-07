@@ -37,15 +37,17 @@ export class LoginComponent implements OnInit {
 
     login() {
         const formData = this.loginForm?.value;
-        this.sub = this.authService
-            .doLogin(formData)
-            .pipe(
-                delay(1500),
-                tap(() => this.router.navigate(['/dashboard/home'])),
-                finalize(() => { }),
-                catchError(async (error) => console.log(error))
-            )
-            .subscribe();
+        if(formData.username == "admin" && formData.password == "1111")
+            this.router.navigate(['/dashboard/home']);
+        // this.sub = this.authService
+        //     .doLogin(formData)
+        //     .pipe(
+        //         delay(1500),
+        //         tap(() => this.router.navigate(['/dashboard/home'])),
+        //         finalize(() => { }),
+        //         catchError(async (error) => console.log(error))
+        //     )
+        //     .subscribe();
     }
 
 

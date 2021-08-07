@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  name: 'dev',
   production: false,
-  apiUrl: 'http://dev.apivnu-gateway.epmt.com.vn:2051/'
+  apiUrl: 'http://dev.apivnu-gateway.epmt.com.vn:2051/',
+  version: 1,
 }
 /*
  * For easier debugging in development mode, you can import the following file
