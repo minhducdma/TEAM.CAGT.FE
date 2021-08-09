@@ -4,7 +4,6 @@
     [nzAllowClear]="isAllowClear"
     [nzDisabled]="isDisabled"
     [(ngModel)]="value"
-    [nzMode]="mode"
     (ngModelChange)="onChange($event)"
 >
     <ng-container *ngFor="let item of listOfOption">

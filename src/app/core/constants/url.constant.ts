@@ -1,6 +1,7 @@
 import { environment } from "src/environments/environment";
 
 const prefixACL = 'ACL/';
+const prefixPTN = 'PTN/';
 export const UrlConstant = {
     BASE_URL: environment.apiUrl,
 
@@ -24,5 +25,7 @@ export const UrlConstant = {
         // FORBIDEN: '/management/403',
         // PROFILE: '/management/profile',
         // MODULE: '/management/module',
+        DM_CAP_DO: prefixPTN + 'DM_CapDos',
+
     }
 }
