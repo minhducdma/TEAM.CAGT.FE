@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AppConfig } from 'src/app/core/config/app.config';
+import { AppConfig } from '@core/config/app.config';
 
 @Pipe({
     name: 'convertUrl',

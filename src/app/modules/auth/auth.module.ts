@@ -5,7 +5,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [LoginComponent, RegisterComponent],
@@ -15,8 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
         AuthRoutingModule,
         SharedModule,
         FormsModule,
-        ReactiveFormsModule,
-        TranslateModule
+        ReactiveFormsModule
     ]
 })
 export class AuthModule { }

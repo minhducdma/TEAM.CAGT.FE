@@ -1,11 +1,15 @@
+
 <div class="login">
-    <form (ngSubmit)="login()" [formGroup]="loginForm">
-        <i class="fa fa-empire"></i>
-        <h2>{{ 'LB.LOGIN' | translate }}</h2>
-        <div class="group form-group"><input formControlName="username" type="text" placeholder="Username"><i class="fa fa-user"></i></div>
-        <div class="group form-group"><input formControlName="password" type="password" placeholder="Password"><i class="fa fa-lock"></i></div>
-        <button type="submit"> <i class="fa fa-send"></i>Login</button>
-        <p class="fs">Forgot <a href="#">Username</a> / <a href="#">Password</a> ? </p>
-        <p class="ss">{{ 'LB.HRM.KHONG_CO_TK' | translate }}<a [routerLink]="['/auth/register']">{{ 'BTN.DANG_KY' | translate }}</a></p>
-    </form>
+  <form (ngSubmit)="login()" [formGroup]="loginForm">
+     <i class="fa fa-empire"></i>
+  <h2>Login</h2>
+  <div class="group form-group" ><input type="text" placeholder="Username"><i class="fa fa-user"></i></div>
+  <div class="group form-group"><input type="password" placeholder="Password"><i class="fa fa-lock"></i></div>
+  <button type="submit" >   <i class="fa fa-send"></i>Login</button>
+  <p class="fs">Forgot <a href="#">Username</a> / <a href="#">Password</a> ? </p>
+  <p class="ss">Don't have an account? <a [routerLink]="['/auth/register']">Signup</a></p>
+  </form>
+ 
+
+
 </div>

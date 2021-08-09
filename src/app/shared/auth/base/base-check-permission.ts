@@ -1,4 +1,4 @@
-import { Directive, Injector, OnInit } from "@angular/core";
+import { Directive, OnInit } from "@angular/core";
 import { ListRoleOption } from "../models/user-role-option";
 
 @Directive()
@@ -13,8 +13,7 @@ export abstract class BaseCheckPermission implements OnInit {
     roleOfOption = [];
     listRoleOption = ListRoleOption;
 
-    constructor(injector: Injector) {
-    }
+    constructor() {}
 
     ngOnInit(): void {
         // const storage = this.menuQuery.getStorage();
