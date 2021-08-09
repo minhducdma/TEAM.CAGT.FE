@@ -1,7 +1,12 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { WindowCloseResult } from '@progress/kendo-angular-dialog';
 import { GridDataResult } from '@progress/kendo-angular-grid';
+import { finalize, map, tap } from 'rxjs/operators';
+import { PageConfig } from 'src/app/core/constants/app.constant';
 import { ActionEnum } from 'src/app/core/constants/enum.constant';
+import { UrlConstant } from 'src/app/core/constants/url.constant';
+import { ApiService } from 'src/app/core/services/api.service';
+import { IPagedResult } from 'src/app/shared/models/response-data.model';
 import { BaseListComponent } from '../../base/base-list.component';
 import { IKhachHang } from '../../model/home.model';
 import { CustomerDataExample } from './example-data';
@@ -17,6 +22,7 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
 
     constructor(
         injector: Injector,
+        public api: ApiService
     ) {
         super(injector)
     }
@@ -44,37 +50,38 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
         });
     }
     protected loadItems() {
-        CustomerDataExample;
-        this.gridData = {
-            data: CustomerDataExample.results.items.slice(this.gridState.skip, this.gridState.skip + this.gridState.take),
-            total: CustomerDataExample.results.pagingInfo.totalItems,
-        };
+        // CustomerDataExample;
+        // this.gridData = {
+        //     data: CustomerDataExample.results.items.slice(this.gridState.skip, this.gridState.skip + this.gridState.take),
+        //     total: CustomerDataExample.results.pagingInfo.totalItems,
+        // };
 
-        // this.isLoading = true;
-        // this.gridData = this.apiService.post(this.url + '/GetList', this.queryOptions).pipe(
-        //     map(res => {
-        //         const results = res.result as IPagedResult<any[]>;
-        //         if (results && results.items) {
-        //             return {
-        //                 data: results.items,
-        //                 total: results.pagingInfo.totalItems,
-        //             };
-        //         } else {
-        //             return {
-        //                 data: [],
-        //                 total: 0,
-        //             };
-        //         }
-        //     }),
-        //     tap(res => {
-        //         if (res.total <= this.gridState.take) {
-        //             this.pageConfig = false;
-        //         } else {
-        //             this.pageConfig = PageConfig;
-        //         }
-        //     }),
-        //     finalize(() => (this.isLoading = false))
-        // );
+        this.isLoading = true;
+        this.gridView$ = this.apiService.post(UrlConstant.API.KHACH_HANG, {}).pipe(
+            map(res => {
+                debugger;
+                const results = res.result as IPagedResult<any[]>;
+                if (results && results.items) {
+                    return {
+                        data: results.items,
+                        total: results.totalCount,
+                    };
+                } else {
+                    return {
+                        data: [],
+                        total: 0,
+                    };
+                }
+            }),
+            tap(res => {
+                if (res.total <= this.gridState.take) {
+                    this.pageConfig = false;
+                } else {
+                    this.pageConfig = PageConfig;
+                }
+            }),
+            finalize(() => (this.isLoading = false))
+        );
     }
     removeHandler(dataItem) {
         this.selectionIds = [];

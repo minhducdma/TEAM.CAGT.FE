@@ -13,6 +13,7 @@ export interface IErrorMessage {
 export interface IPagedResult<T> {
     items: T;
     pagingInfo: IPagingInfo;
+    totalCount: number;
 }
 
 export interface IPagingInfo {

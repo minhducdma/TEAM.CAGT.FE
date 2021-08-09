@@ -1,22 +1,9 @@
 import { environment } from "src/environments/environment";
-
-const prefixACL = 'ACL/';
-const prefixPTN = 'PTN/';
 export const UrlConstant = {
     BASE_URL: environment.apiUrl,
 
     API: {
-        //List API in here
-
-        // PERMISSION
-        ACL_ACCOUNT: prefixACL + 'Accounts',
-        ACL_PERMISSION: prefixACL + 'Permissions',
-        ACL_USER: prefixACL + 'Users',
-        ACL_USER_DEVICE_DETAIL: prefixACL + 'UserDeviceDetails',
-        ACL_PERMISSION_GROUP_USER: prefixACL + 'PermissionGroupUsers',
-        ACL_PERMISSION_GROUP: prefixACL + 'PermissionGroups',
-        ACL_PERMISSION_GROUP_ACTION: prefixACL + 'PermissionGroupActions',
-        ACL_GROUP_CREATION_PERMISSION: prefixACL + 'GroupCreationPermissions',
+        KHACH_HANG: '/khach-hangs'
     },
 
     ROUTE: {
@@ -25,7 +12,5 @@ export const UrlConstant = {
         // FORBIDEN: '/management/403',
         // PROFILE: '/management/profile',
         // MODULE: '/management/module',
-        DM_CAP_DO: prefixPTN + 'DM_CapDos',
-
     }
 }

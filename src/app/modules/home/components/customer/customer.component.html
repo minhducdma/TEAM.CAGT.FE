@@ -13,7 +13,7 @@
     </button>
 </div>
 <div class="grid-wrapper">
-    <kendo-grid [data]="gridData" 
+    <kendo-grid [data]="gridView$ | async" 
                 [resizable]="true"
                 [pageSize]="gridState.take" 
                 [skip]="gridState.skip"
