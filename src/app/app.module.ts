@@ -11,7 +11,9 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
+
 import { SidebarLayoutComponent } from './layout/sidebar-layout/sidebar-layout.component';
+import { HhhComponent } from './layout/hhh/hhh.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { SidebarLayoutComponent } from './layout/sidebar-layout/sidebar-layout.c
     AuthLayoutComponent,
     NavbarLayoutComponent,
     FooterLayoutComponent,
-    SidebarLayoutComponent
+    SidebarLayoutComponent,
+    HhhComponent
   ],
   imports: [
     // angular
