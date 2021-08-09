@@ -57,9 +57,11 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
         // };
 
         this.isLoading = true;
-        this.gridView$ = this.apiService.post(UrlConstant.API.KHACH_HANG, {}).pipe(
+        console.log(UrlConstant.API.KHACH_HANG);
+        this.gridView$ = this.apiService.get(UrlConstant.API.KHACH_HANG, {}).pipe(
             map(res => {
                 debugger;
+                console.log(res)
                 const results = res.result as IPagedResult<any[]>;
                 if (results && results.items) {
                     return {
@@ -119,6 +121,6 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
         this.showFormCreateOrUpdate();
     }
     onExportExcel(){
-        
+
     }
 }

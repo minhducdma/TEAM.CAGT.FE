@@ -5,7 +5,7 @@
 export const environment = {
   name: 'dev',
   production: false,
-  apiUrl: 'https://demo2.cagt.top/api',
+  apiUrl: 'https://demo2.cagt.top/api/app',
   version: 1,
 }
 /*

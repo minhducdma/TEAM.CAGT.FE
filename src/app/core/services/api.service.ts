@@ -39,7 +39,7 @@ export class ApiService extends BehaviorSubject<GridDataResult> {
         params?: Object,
         isCache: boolean = false
     ): Observable<IResponseData<any>> {
-        let url: string = this.apiUrl;
+        let url: string = this.apiUrl + api;
         let header: HttpHeaders;
         if (isCache) {
             header = new HttpHeaders({ 'cache-response': 'true' });

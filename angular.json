@@ -70,7 +70,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "team-cagt-fe:build:production"
+              "browserTarget": "team-cagt-fe:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },
