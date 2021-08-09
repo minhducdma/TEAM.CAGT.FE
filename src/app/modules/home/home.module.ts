@@ -29,16 +29,14 @@ import { CustomPipeModule } from 'src/app/shared/pipes/custom-pipe.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { WidgetModule } from 'src/app/shared/widgets';
 import { HomeComponent } from './components/home/home.component';
-import { ProductCateComponent } from './components/product-cate/product-cate.component';
-import { CustomerComponent } from './customer/customer.component';
-import { FormCustomerComponent } from './customer/form-customer/form-customer.component';
+import { CustomerComponent } from './components/customer/customer.component';
+import { FormCustomerComponent } from './components/customer/form-customer/form-customer.component';
 
 import { HomeRoutingModule } from './home.routing';
 
 @NgModule({
     declarations: [
         HomeComponent,
-        ProductCateComponent,
         CustomerComponent,
         FormCustomerComponent
     ],

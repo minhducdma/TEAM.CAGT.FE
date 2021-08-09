@@ -3,8 +3,8 @@ import { Validators } from '@angular/forms';
 import { ActionEnum } from 'src/app/core/constants/enum.constant';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { FormUtil } from 'src/app/shared/utils/form';
-import { BaseFormComponent } from '../../base/base-form.component';
-import { IKhachHang } from '../../model/home.model';
+import { BaseFormComponent } from '../../../base/base-form.component';
+import { IKhachHang } from '../../../model/home.model';
 
 @Component({
     selector: 'app-form-customer',

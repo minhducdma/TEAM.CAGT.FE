@@ -1,14 +1,9 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { WindowCloseResult } from '@progress/kendo-angular-dialog';
 import { GridDataResult } from '@progress/kendo-angular-grid';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { takeUntil } from 'rxjs/operators';
-import { ModalDeleteConfig } from 'src/app/core/constants/app.constant';
 import { ActionEnum } from 'src/app/core/constants/enum.constant';
-import { NotificationService } from 'src/app/core/services/notification.service';
-import { IPagedResult } from 'src/app/shared/models/response-data.model';
-import { BaseListComponent } from '../base/base-list.component';
-import { IKhachHang } from '../model/home.model';
+import { BaseListComponent } from '../../base/base-list.component';
+import { IKhachHang } from '../../model/home.model';
 import { CustomerDataExample } from './example-data';
 import { FormCustomerComponent } from './form-customer/form-customer.component';
 
