@@ -31,7 +31,7 @@ export abstract class BaseListComponent<T> extends BaseCheckPermission implement
     gridState: State = {
         sort: [{ field: 'id', dir: 'desc' }],
         skip: 0,
-        take: 20,
+        take: 10,
     };
     user: IUserInfo;
     openFirstTime = false;
@@ -60,8 +60,6 @@ export abstract class BaseListComponent<T> extends BaseCheckPermission implement
     protected auth: AuthService;
     protected windowService: WindowService;
     protected apiService: ApiService;
-    protected modal: NzModalService;
-    protected notification: NotificationService;
     protected translate: CustomTranslateService;
     constructor(
         injector : Injector
@@ -70,8 +68,6 @@ export abstract class BaseListComponent<T> extends BaseCheckPermission implement
         this.auth = injector.get(AuthService);
         this.windowService = injector.get(WindowService);
         this.apiService = injector.get(ApiService);
-        this.modal = injector.get(NzModalService);
-        this.notification = injector.get(NotificationService);
         this.translate = injector.get(CustomTranslateService);
     }
 

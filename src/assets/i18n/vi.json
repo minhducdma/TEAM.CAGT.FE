@@ -2546,5 +2546,23 @@
     "SCI.TKDA.THOI_GIAN": "Thời gian thực hiện",
     "SCI.TKDA.KHOI_CONG": "Khởi công",
     "SCI.TKDA.HOAN_THANH": "Hoàn thành",
-    "SCI.TKDA.GHI_CHU": "Ghi chú"
+    "SCI.TKDA.GHI_CHU": "Ghi chú",
+
+
+    "HOME.PRO.ID":"Mã sản phẩm",
+    "HOME.PRO.NAME":"Tên sản phẩm",
+    "HOME.PRO.CAT":"Loại sản phẩm",
+    "HOME.PRO.PRICE":"Giá sản phẩm",
+    "HOME.PRO.STOCK":"Số lượng",
+
+    "HOME.CUS.ID":"ID",
+    "HOME.CUS.HOTEN":"Họ tên",
+    "HOME.CUS.NGAY_SINH":"Ngày sinh",
+    "HOME.CUS.GIOI_TINH":"Giới tính",
+    "HOME.CUS.DIA_CHI":"Địa chỉ",
+    "HOME.CUS.SDT":"Số điện thoại",
+    "HOME.CUS.EMAIL":"Email",
+    "HOME.CUS.LOAI_KH":"Loại khách hàng",
+    "HOME.CUS.CAP_NHAT":"Cập nhật khách hàng"
+
 }

@@ -8,6 +8,5 @@ export enum ActionEnum {
     DUPLICATE = 3,
     DELETE = 4,
     VIEW = 5,
-    APPROVE = 6,
-    BAN_HANH = 7,
+    APPROVE = 6
 }

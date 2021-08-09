@@ -1,12 +1,15 @@
-import { Directive, Input, OnDestroy, OnInit } from "@angular/core";
+import { Directive, Injector, Input, OnDestroy, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
 import { ActionEnum } from "src/app/core/constants/enum.constant";
 import { DropDownListEnum } from "src/app/shared/controls/cagt-select/asc-select.enum";
 import { IUserInfo } from "src/app/shared/auth/models/user-token.model";
 import { WindowRef } from '@progress/kendo-angular-dialog';
 import { FOLDER } from "src/app/core/constants/app.constant";
-import { FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { IFile, IFileAttach } from "src/app/shared/models/file.model";
+import { ApiService } from "src/app/core/services/api.service";
+import { NotificationService } from "src/app/core/services/notification.service";
+import { CustomTranslateService } from "src/app/core/services/custom-translate.service";
 export interface IGenericeScience {
     id?: number;
     idFileDinhKem?: number;
@@ -33,9 +36,19 @@ export abstract class BaseFormComponent<T extends IGenericeScience> implements O
     userSelected: number[] = [];
     protected destroyed$ = new Subject();
     
+    protected windowRef: WindowRef;
+    protected apiService: ApiService;
+    protected formBuilder: FormBuilder;
+    protected translate: CustomTranslateService;
     constructor(
-        protected windowRef: WindowRef
-    ) {}
+        injector : Injector
+    ) {
+        this.windowRef = injector.get(WindowRef);
+        this.apiService = injector.get(ApiService);
+        this.formBuilder = injector.get(FormBuilder);
+        this.translate = injector.get(CustomTranslateService);
+
+    }
 
     ngOnInit(): void {
         this.createForm();

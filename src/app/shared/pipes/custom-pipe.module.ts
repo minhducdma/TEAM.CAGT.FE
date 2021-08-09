@@ -4,11 +4,13 @@ import { ConvertUrlPipe } from './convert-url.pipe';
 import { EllipsisPipe } from './ellipsis.pipe';
 import { ArrayFilterPipe } from './filter.pipe';
 import { SafeHtmlPipe } from './safe-html.pipe';
+import { TranferIconPipe } from './tranfer-icon.pipe';
 const PIPES = [
     ArrayFilterPipe,
     SafeHtmlPipe,
     ConvertUrlPipe,
-    EllipsisPipe
+    EllipsisPipe,
+    TranferIconPipe
 ];
 
 @NgModule({
