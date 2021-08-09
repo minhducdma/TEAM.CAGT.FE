@@ -5,7 +5,7 @@
 export const environment = {
   name: 'dev',
   production: false,
-  apiUrl: 'http://dev.apivnu-gateway.epmt.com.vn:2051/',
+  apiUrl: '',
   version: 1,
 }
 /*
