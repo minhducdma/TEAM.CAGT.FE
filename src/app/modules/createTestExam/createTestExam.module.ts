@@ -28,17 +28,19 @@ import { FormDirectiveModule } from 'src/app/shared/directives/forms';
 import { CustomPipeModule } from 'src/app/shared/pipes/custom-pipe.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { WidgetModule } from 'src/app/shared/widgets';
+import { AuthService } from '@abp/ng.core';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { CreateTestExamRoutingModule } from './createTestExam.routing';
+import { CreateTestComponent } from './components/create-test/create-test.component';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
-import { TaoDeThiRoutingModule } from './taoDeThi.routing';
-import { TaoDeThiComponent } from './components/taoDeThi/taoDeThi.component';
 
 @NgModule({
     declarations: [
-        TaoDeThiComponent
+        CreateTestComponent
     ],
     imports: [
         SharedModule,
-        TaoDeThiRoutingModule,
+        CreateTestExamRoutingModule,
         ControlErrorModule,
         GridModule,
         ViewFileModule,
@@ -75,4 +77,4 @@ import { TaoDeThiComponent } from './components/taoDeThi/taoDeThi.component';
     exports: [],
     providers: [],
 })
-export class TaoDeThiModule { }
+export class CreateTestExamModule { }

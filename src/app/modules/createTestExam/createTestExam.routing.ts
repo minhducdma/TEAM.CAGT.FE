@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TaoDeThiComponent } from './components/taoDeThi/taoDeThi.component';
+import { CreateTestComponent } from './components/create-test/create-test.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'taoDeThiMoi',
+        redirectTo: 'createTest',
         pathMatch: 'full'
     },
     {
-        path: 'taoDeThiMoi',
-        component: TaoDeThiComponent
+        path: 'createTest',
+        component: CreateTestComponent
     },
 ];
 
@@ -18,4 +18,4 @@ export const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class TaoDeThiRoutingModule { }
+export class CreateTestExamRoutingModule { }
