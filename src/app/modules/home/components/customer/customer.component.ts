@@ -25,8 +25,7 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
     constructor(
         injector: Injector,
         public api: ApiService,
-        private authService: AuthService,
-        private oAuthService: OAuthService
+        private authService: AuthService
     ) {
         super(injector)
     }
@@ -54,7 +53,6 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
         });
     }
     protected loadItems() {
-        debugger;
         CustomerDataExample;
         this.gridData = {
             data: CustomerDataExample.results.items.slice(this.gridState.skip, this.gridState.skip + this.gridState.take),
@@ -127,12 +125,5 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
     }
     onExportExcel(){
 
-    }
-    login() {
-      this.authService.navigateToLogin();
-    }
-    get hasLoggedIn(): boolean {
-      return this.oAuthService.hasValidAccessToken();
-      // return false;
     }
 }
