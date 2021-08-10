@@ -1,18 +1,28 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+import { Environment } from '@abp/ng.core';
+
+const baseUrl = 'http://localhost:4200';
 
 export const environment = {
-  name: 'dev',
   production: false,
-  apiUrl: 'https://demo2.cagt.top/api/app',
-  version: 1,
-}
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+  application: {
+    baseUrl,
+    name: 'SiPM',
+    logoUrl: '',
+  },
+  oAuthConfig: {
+    issuer: 'https://apisipm.cagt.top',
+    redirectUri: baseUrl,
+    clientId: 'SiPM_App',
+    responseType: 'code',
+    scope: 'offline_access openid profile role email phone SiPM',
+    requireHttps: false,
+    // strictDiscoveryDocumentValidation: false,
+    // skipIssuerCheck: true,
+  },
+  apis: {
+    default: {
+      url: 'https://apisipm.cagt.top/api/app',
+      rootNamespace: 'SiPM',
+    },
+  },
+} as Environment;

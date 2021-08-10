@@ -11,7 +11,7 @@ export class AppConfig {
     constructor(private http: HttpClient) {}
 
     load() {
-        const jsonFile = `_config/config.${environment.name}.json?v=${AppConstant.VERSION}`;
+        const jsonFile = `_config/config.${environment.application.name}.json?v=${AppConstant.VERSION}`;
         return new Promise<void>((resolve, reject) => {
             this.http
                 .get(jsonFile)

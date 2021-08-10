@@ -11,6 +11,8 @@ import { BaseListComponent } from '../../base/base-list.component';
 import { IKhachHang } from '../../model/home.model';
 import { CustomerDataExample } from './example-data';
 import { FormCustomerComponent } from './form-customer/form-customer.component';
+import { AuthService } from '@abp/ng.core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
     selector: 'app-customer',
@@ -22,7 +24,9 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
 
     constructor(
         injector: Injector,
-        public api: ApiService
+        public api: ApiService,
+        private authService: AuthService,
+        private oAuthService: OAuthService
     ) {
         super(injector)
     }
@@ -122,5 +126,12 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
     }
     onExportExcel(){
 
+    }
+    login() {
+      this.authService.navigateToLogin();
+    }
+    get hasLoggedIn(): boolean {
+      return this.oAuthService.hasValidAccessToken();
+      // return false;
     }
 }

@@ -33,6 +33,8 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { FormCustomerComponent } from './components/customer/form-customer/form-customer.component';
 
 import { HomeRoutingModule } from './home.routing';
+import { AuthService } from '@abp/ng.core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,7 @@ import { HomeRoutingModule } from './home.routing';
         FormCustomerComponent
     ],
     imports: [
-        SharedModule, 
+        SharedModule,
         HomeRoutingModule,
         ControlErrorModule,
         GridModule,
@@ -73,6 +75,7 @@ import { HomeRoutingModule } from './home.routing';
         TranslateModule,
         FormDirectiveModule,
         GridModule,
+
     ],
     exports: [],
     providers: [],

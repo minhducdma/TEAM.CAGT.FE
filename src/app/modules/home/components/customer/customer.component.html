@@ -1,4 +1,7 @@
 <div class="m-portlet__head d-flex align-items-center">
+  <a *ngIf="!hasLoggedIn" (click)="login()" class="px-4 btn btn-primary ml-1" role="button"
+      ><i class="fa fa-sign-in"></i> Login</a
+    >
     <button class="btn_custom btn_df" (click)="onExportExcel()">
         <div [innerHTML]="'download.svg' | vnuIcon | safeHtml: 'html'"></div>
         <span class="text">{{ 'BTN.EXCEL' | translate }}</span>
@@ -13,15 +16,15 @@
     </button>
 </div>
 <div class="grid-wrapper">
-    <kendo-grid [data]="gridView$ | async" 
+    <kendo-grid [data]="gridView$ | async"
                 [resizable]="true"
-                [pageSize]="gridState.take" 
+                [pageSize]="gridState.take"
                 [skip]="gridState.skip"
-                [loading]="isLoading" 
-                [pageable]="true" 
-                [resizable]="true" 
+                [loading]="isLoading"
+                [pageable]="true"
+                [resizable]="true"
                 kendoGridSelectBy="id"
-                [selectedKeys]="selectionIds" 
+                [selectedKeys]="selectionIds"
                 (dataStateChange)="onStateChange($event)">
         <kendo-grid-checkbox-column [showSelectAll]="true" [width]="60" [columnMenu]="false">
         </kendo-grid-checkbox-column>
