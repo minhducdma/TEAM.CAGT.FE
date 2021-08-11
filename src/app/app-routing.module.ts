@@ -53,7 +53,7 @@ const routes: Routes = [
         canActivate: [NoAuthGuard],
         loadChildren: () =>
             import('./modules/createTestExam/createTestExam.module').then(m => m.CreateTestExamModule)
-    }
+    },
     // Fallback when no prior routes is matched
     { path: '**', redirectTo: '/auth/login', pathMatch: 'full' }
 ];

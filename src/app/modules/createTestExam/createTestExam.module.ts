@@ -72,6 +72,7 @@ import { TreeViewModule } from '@progress/kendo-angular-treeview';
         FormDirectiveModule,
         GridModule,
         TreeViewModule,
+        
 
     ],
     exports: [],
