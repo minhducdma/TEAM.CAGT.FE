@@ -26,8 +26,7 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
     constructor(
         injector: Injector,
         public api: ApiService,
-        private authService: AuthService,
-        private oAuthService: OAuthService
+        private authService: AuthService
     ) {
         super(injector)
     }
@@ -55,40 +54,40 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
         });
     }
     protected loadItems() {
-        // CustomerDataExample;
-        // this.gridData = {
-        //     data: CustomerDataExample.results.items.slice(this.gridState.skip, this.gridState.skip + this.gridState.take),
-        //     total: CustomerDataExample.results.pagingInfo.totalItems,
-        // };
+        CustomerDataExample;
+        this.gridData = {
+            data: CustomerDataExample.results.items.slice(this.gridState.skip, this.gridState.skip + this.gridState.take),
+            total: CustomerDataExample.results.pagingInfo.totalItems,
+        };
 
-        this.isLoading = true;
-        console.log(UrlConstant.API.KHACH_HANG);
-        this.gridView$ = this.apiService.get(UrlConstant.API.KHACH_HANG, {}).pipe(
-            map(res => {
-                debugger;
-                console.log(res)
-                const results = res.result as IPagedResult<any[]>;
-                if (results && results.items) {
-                    return {
-                        data: results.items,
-                        total: results.totalCount,
-                    };
-                } else {
-                    return {
-                        data: [],
-                        total: 0,
-                    };
-                }
-            }),
-            tap(res => {
-                if (res.total <= this.gridState.take) {
-                    this.pageConfig = false;
-                } else {
-                    this.pageConfig = PageConfig;
-                }
-            }),
-            finalize(() => (this.isLoading = false))
-        );
+        // this.isLoading = true;
+        // console.log(UrlConstant.API.KHACH_HANG);
+        // this.gridView$ = this.apiService.get(UrlConstant.API.KHACH_HANG, {}).pipe(
+        //     map(res => {
+        //         debugger;
+        //         console.log(res)
+        //         const results = res.result as IPagedResult<any[]>;
+        //         if (results && results.items) {
+        //             return {
+        //                 data: results.items,
+        //                 total: results.totalCount,
+        //             };
+        //         } else {
+        //             return {
+        //                 data: [],
+        //                 total: 0,
+        //             };
+        //         }
+        //     }),
+        //     tap(res => {
+        //         if (res.total <= this.gridState.take) {
+        //             this.pageConfig = false;
+        //         } else {
+        //             this.pageConfig = PageConfig;
+        //         }
+        //     }),
+        //     finalize(() => (this.isLoading = false))
+        // );
     }
     removeHandler(dataItem) {
         this.selectionIds = [];
@@ -127,12 +126,5 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
     }
     onExportExcel(){
       this.authService.navigateToLogin();
-    }
-    login() {
-      // this.authService.navigateToLogin();
-    }
-    get hasLoggedIn(): boolean {
-      return this.oAuthService.hasValidAccessToken();
-      // return false;
     }
 }

@@ -45,7 +45,15 @@ const routes: Routes = [
       path: 'setting-management',
       loadChildren: () =>
         import('@abp/ng.setting-management').then(m => m.SettingManagementModule.forLazy()),
+
     },
+    {
+      path: 'testExam',
+        component: ContentLayoutComponent,
+        canActivate: [NoAuthGuard],
+        loadChildren: () =>
+            import('./modules/createTestExam/createTestExam.module').then(m => m.CreateTestExamModule)
+    }
     // Fallback when no prior routes is matched
     { path: '**', redirectTo: '/auth/login', pathMatch: 'full' }
 ];
