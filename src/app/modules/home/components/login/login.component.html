@@ -1,0 +1,10 @@
+<div class="m-portlet__head d-flex align-items-center">
+  <a *ngIf="!hasLoggedIn" (click)="login()" class="px-4 btn btn-primary ml-1" role="button"
+      ><i class="fa fa-sign-in"></i> Login</a
+    >
+    <button class="btn_custom btn_df" (click)="onExportExcel()">
+        <div [innerHTML]="'download.svg' | vnuIcon | safeHtml: 'html'"></div>
+        <span class="text">{{ 'BTN.EXCEL' | translate }}</span>
+    </button>
+
+</div>

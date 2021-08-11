@@ -10,7 +10,12 @@
   },
   "private": true,
   "dependencies": {
-    "@abp/ng.core": "^4.4.0",
+    "@abp/ng.core": "^4.4.0-rc.2",
+    "@abp/ng.account": "~4.4.0-rc.2",
+    "@abp/ng.components": "~4.4.0-rc.2",
+    "@abp/ng.identity": "~4.4.0-rc.2",
+    "@abp/ng.setting-management": "~4.4.0-rc.2",
+    "@abp/ng.tenant-management": "~4.4.0-rc.2",
     "@angular/animations": "~12.2.0",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "^12.2.0",

@@ -21,7 +21,8 @@ export const environment = {
   },
   apis: {
     default: {
-      url: 'https://apisipm.cagt.top/api/app',
+      url: 'https://apisipm.cagt.top',
+      // urlConstant: 'https://apisipm.cagt.top/api/app',
       rootNamespace: 'SiPM',
     },
   },

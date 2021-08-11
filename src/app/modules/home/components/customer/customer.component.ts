@@ -14,6 +14,7 @@ import { FormCustomerComponent } from './form-customer/form-customer.component';
 import { AuthService } from '@abp/ng.core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
+
 @Component({
     selector: 'app-customer',
     templateUrl: './customer.component.html'
@@ -125,10 +126,10 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
         this.showFormCreateOrUpdate();
     }
     onExportExcel(){
-
+      this.authService.navigateToLogin();
     }
     login() {
-      this.authService.navigateToLogin();
+      // this.authService.navigateToLogin();
     }
     get hasLoggedIn(): boolean {
       return this.oAuthService.hasValidAccessToken();

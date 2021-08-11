@@ -1,3 +1,4 @@
+import { LoginIdentityServerComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
@@ -33,14 +34,14 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { FormCustomerComponent } from './components/customer/form-customer/form-customer.component';
 
 import { HomeRoutingModule } from './home.routing';
-import { AuthService } from '@abp/ng.core';
-import { OAuthService } from 'angular-oauth2-oidc';
+
 
 @NgModule({
     declarations: [
         HomeComponent,
         CustomerComponent,
-        FormCustomerComponent
+        FormCustomerComponent,
+        LoginIdentityServerComponent
     ],
     imports: [
         SharedModule,
@@ -78,6 +79,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 
     ],
     exports: [],
-    providers: [],
+    providers: [
+    ],
 })
 export class HomeModule { }
