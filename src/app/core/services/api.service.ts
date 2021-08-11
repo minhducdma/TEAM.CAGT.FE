@@ -4,6 +4,7 @@ import { GridDataResult } from '@progress/kendo-angular-grid';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CacheItem, ICacheItem } from 'src/app/shared/models/cache-item.model';
 import { IResponseData } from 'src/app/shared/models/response-data.model';
+import { environment } from 'src/environments/environment';
 import { UrlConstant } from '../constants/url.constant';
 import { CachingService } from './caching.service';
 
@@ -23,7 +24,7 @@ export class ApiService extends BehaviorSubject<GridDataResult> {
     constructor(private http: HttpClient, private cachingService: CachingService) {
         super(null);
         // set environment
-        this.apiUrl = UrlConstant.BASE_URL;
+        this.apiUrl = environment.apis.default.url + '/api/app';
     }
 
     /**
@@ -44,7 +45,7 @@ export class ApiService extends BehaviorSubject<GridDataResult> {
         if (isCache) {
             header = new HttpHeaders({ 'cache-response': 'true' });
         }
-
+        header = new HttpHeaders({ 'accept': 'text/plain' });
         return this.http.get<IResponseData<any>>(url, {
             headers: header,
         });

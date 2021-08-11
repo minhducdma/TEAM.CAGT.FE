@@ -76,7 +76,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     CustomTranslateService,
     AppCustomPreloader,
-    APP_ROUTE_PROVIDER
+    APP_ROUTE_PROVIDER,
 
 ],
   bootstrap: [AppComponent]

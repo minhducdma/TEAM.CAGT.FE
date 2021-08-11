@@ -1,8 +1,8 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { WindowCloseResult } from '@progress/kendo-angular-dialog';
 import { GridDataResult } from '@progress/kendo-angular-grid';
-import { finalize, map, tap } from 'rxjs/operators';
-import { PageConfig } from 'src/app/core/constants/app.constant';
+import { finalize, map, takeUntil, tap } from 'rxjs/operators';
+import { ModalDeleteConfig, PageConfig } from 'src/app/core/constants/app.constant';
 import { ActionEnum } from 'src/app/core/constants/enum.constant';
 import { UrlConstant } from 'src/app/core/constants/url.constant';
 import { ApiService } from 'src/app/core/services/api.service';
@@ -13,6 +13,8 @@ import { CustomerDataExample } from './example-data';
 import { FormCustomerComponent } from './form-customer/form-customer.component';
 import { AuthService } from '@abp/ng.core';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 
 @Component({
@@ -21,17 +23,35 @@ import { OAuthService } from 'angular-oauth2-oidc';
 })
 export class CustomerComponent extends BaseListComponent<IKhachHang> implements OnInit {
     public gridData: GridDataResult;
-    //url: string = UrlConstant.API.DM_VAI_TRO_KHCN;
+    url: string = UrlConstant.API.KHACH_HANG;
+
+    queryOption = {
+        filter: null,
+        trangThaiKhachHangs: null,
+        loaiKhachHangs: null,
+        nguonKhachHangs: null,
+        nguoiPhuTrachs: null,
+        sapXep: null,
+        thoiGianTu: 1,
+        thoiGianDen: 1,
+    }
 
     constructor(
         injector: Injector,
         public api: ApiService,
-        private authService: AuthService
+        private authService: AuthService,
+        private modal: NzModalService,
     ) {
         super(injector)
     }
-    ngOnInit() {
+
+    listDMLoaiKH = [];
+    listDMNhanVienPhuTrach = [];
+
+    ngOnInit(){
         super.ngOnInit();
+        this.getDanhMucLoaiKH();
+        this.getDanhMucNVPhuTrach();
     }
 
     protected showFormCreateOrUpdate() {
@@ -54,40 +74,19 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
         });
     }
     protected loadItems() {
-        CustomerDataExample;
-        this.gridData = {
-            data: CustomerDataExample.results.items.slice(this.gridState.skip, this.gridState.skip + this.gridState.take),
-            total: CustomerDataExample.results.pagingInfo.totalItems,
-        };
-
-        // this.isLoading = true;
-        // console.log(UrlConstant.API.KHACH_HANG);
-        // this.gridView$ = this.apiService.get(UrlConstant.API.KHACH_HANG, {}).pipe(
-        //     map(res => {
-        //         debugger;
-        //         console.log(res)
-        //         const results = res.result as IPagedResult<any[]>;
-        //         if (results && results.items) {
-        //             return {
-        //                 data: results.items,
-        //                 total: results.totalCount,
-        //             };
-        //         } else {
-        //             return {
-        //                 data: [],
-        //                 total: 0,
-        //             };
-        //         }
-        //     }),
-        //     tap(res => {
-        //         if (res.total <= this.gridState.take) {
-        //             this.pageConfig = false;
-        //         } else {
-        //             this.pageConfig = PageConfig;
-        //         }
-        //     }),
-        //     finalize(() => (this.isLoading = false))
-        // );
+        this.apiService.get(UrlConstant.API.KHACH_HANG, {}).subscribe((res:any)=>{
+            if(res != null && res.items.length > 0){
+                this.gridData = {
+                    data: res.items,
+                    total: res.totalCount,
+                }
+            }else{
+                this.gridData = {
+                    data: [],
+                    total: 0,
+                }
+            }
+        })
     }
     removeHandler(dataItem) {
         this.selectionIds = [];
@@ -95,29 +94,27 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
         this.removeSelectedHandler();
     }
     removeSelectedHandler() {
-        // if (this.selectionIds.length > 0) {
-        //     const body = {
-        //         ids: this.selectionIds,
-        //     };
-        //     this.modal.confirm({
-        //         nzTitle: ModalDeleteConfig.title,
-        //         nzContent: ModalDeleteConfig.content,
-        //         nzOkText: ModalDeleteConfig.yes,
-        //         nzOkType: 'danger',
-        //         nzOnOk: () => {
-        //             this.apiService
-        //                 .delete(this.url, body)
-        //                 .pipe(takeUntil(this.destroyed$))
-        //                 .subscribe(res => {
-        //                     this.selectionIds = [];
-        //                     this.notification.showSuccessMessage(this.translate.get('MES.DELETE_DONE'));
-        //                     this.loadItems();
-        //                 });
-        //         },
-        //         nzCancelText: ModalDeleteConfig.no,
-        //         nzOnCancel: () => { },
-        //     });
-        // }
+        if (this.selectionIds.length > 0) {
+            const body = {
+                id: this.selectionIds[0]
+            };
+            this.modal.confirm({
+                nzTitle: ModalDeleteConfig.title,
+                nzContent: ModalDeleteConfig.content,
+                nzOkText: ModalDeleteConfig.yes,
+                nzOkType: 'danger',
+                nzOnOk: () => {
+                    this.apiService
+                        .delete(this.url)
+                        .subscribe(res => {
+                            this.selectionIds = [];
+                            this.loadItems();
+                        });
+                },
+                nzCancelText: ModalDeleteConfig.no,
+                nzOnCancel: () => { },
+            });
+        }
     }
     editHandler(dataItem) {
         this.action = ActionEnum.UPDATE;
@@ -126,5 +123,18 @@ export class CustomerComponent extends BaseListComponent<IKhachHang> implements 
     }
     onExportExcel(){
       this.authService.navigateToLogin();
+    }
+
+
+    getDanhMucLoaiKH(){
+        this.apiService.get(UrlConstant.API.DANH_MUC + `?tenBang=GetKhachHangs&tenCot=LoaiKhachHang`).subscribe((res:any)=>{
+            this.listDMLoaiKH = res;
+        });
+    }
+
+    getDanhMucNVPhuTrach(){
+        this.apiService.get(UrlConstant.API.DANH_MUC + `?tenBang=GetKhachHangs&tenCot=NhanVienPhuTrach`).subscribe((res:any)=>{
+            this.listDMNhanVienPhuTrach = res;
+        });
     }
 }

@@ -1,6 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { ActionEnum } from 'src/app/core/constants/enum.constant';
+import { UrlConstant } from 'src/app/core/constants/url.constant';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { FormUtil } from 'src/app/shared/utils/form';
 import { BaseFormComponent } from '../../../base/base-form.component';
@@ -11,7 +12,8 @@ import { IKhachHang } from '../../../model/home.model';
     templateUrl: './form-customer.component.html',
 })
 export class FormCustomerComponent extends BaseFormComponent<IKhachHang> implements OnInit {
-    //url: string = UrlConstant.API.DM_VAI_TRO_KHCN;
+
+    url: string = UrlConstant.API.KHACH_HANG;
     
     constructor(
         injector: Injector,
@@ -32,9 +34,32 @@ export class FormCustomerComponent extends BaseFormComponent<IKhachHang> impleme
 
     onSubmit() {
         if (this.form.invalid) {
-            // trigger validate all field
             FormUtil.validateAllFormFields(this.form);
             return;
+        }
+        if (this.form.valid) {
+            switch (this.action) {
+                case ActionEnum.CREATE:
+                    this.apiService
+                        .post(this.url, this.form.value)
+                        .subscribe(res => {
+                            // show notification
+                            //this.notification.showSuccessMessage(this.translate.get('MES.CREATE_DONE'));
+                            // close form
+                            this.closeForm();
+                        });
+                    break;
+                case ActionEnum.UPDATE:
+                    this.apiService
+                        .put(this.url, this.form.value)
+                        .subscribe(res => {
+                            // show notification
+                            //this.notification.showSuccessMessage(this.translate.get('MES.UPDATE_DONE'));
+                            // close form
+                            this.closeForm();
+                        });
+                    break;
+            }
         }
     }
     createForm() {

@@ -4,7 +4,7 @@ import { AppConstant } from '../constants/app.constant';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-    constructor(private notification: NzNotificationService) {}
+    constructor(public notification: NzNotificationService) {}
     private option = {
         nzDuration: 3000,
         nzAnimate: true,

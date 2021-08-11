@@ -9,6 +9,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LangEnum } from './constants/enum.constant';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { CookieService } from 'ngx-cookie-service';
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,6 +31,8 @@ export function createTranslateLoader(http: HttpClient) {
     providers: [
         AuthGuard,
         NoAuthGuard,
+        NzNotificationService,
+        CookieService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,

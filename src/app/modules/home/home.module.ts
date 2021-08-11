@@ -34,6 +34,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { FormCustomerComponent } from './components/customer/form-customer/form-customer.component';
 
 import { HomeRoutingModule } from './home.routing';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { HomeRoutingModule } from './home.routing';
         TranslateModule,
         FormDirectiveModule,
         GridModule,
-
+        NzSelectModule,
+        DropDownsModule 
     ],
     exports: [],
     providers: [
