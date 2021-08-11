@@ -1,3 +1,4 @@
+import { LoginIdentityServerComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -17,6 +18,10 @@ export const routes: Routes = [
         path: 'customer',
         component: CustomerComponent
     },
+    {
+      path: 'login',
+      component: LoginIdentityServerComponent
+  },
 ];
 
 @NgModule({

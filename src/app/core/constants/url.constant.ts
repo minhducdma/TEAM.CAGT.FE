@@ -3,7 +3,7 @@ import { environment } from "src/environments/environment";
 const prefixACL = 'ACL/';
 const prefixPTN = 'PTN/';
 export const UrlConstant = {
-    BASE_URL: environment.apis.default.url,
+    BASE_URL: environment.apis.default.urlConstant,
 
     API: {
         //List API in here
