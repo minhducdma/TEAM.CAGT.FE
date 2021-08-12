@@ -1,4 +1,10 @@
 <button (click)="addnew()">Add</button>
+<select class="selectpicker" multiple>
+    <option>Mustard</option>
+    <option>Ketchup</option>
+    <option>Relish</option>
+  </select>
+
 
 <kendo-treeview kendoTreeViewDragAndDrop kendoTreeViewDragAndDropEditing kendoTreeViewHierarchyBinding [childrenField]="'items'" [nodes]="data" [textField]="'noiDungCauHoi'" kendoTreeViewExpandable [expandBy]="'id'" [expandedKeys]="expandedKeys">
     <ng-template kendoTreeViewNodeTemplate let-dataItem>
@@ -68,8 +74,9 @@
         </div>
 
         <div class="structure">
-            <button class="create_bnt" onclick="document.getElementById('create_question').style.display='block'">Tao cau
-                        hoi</button>
+            <button class="create_bnt" onclick="document.getElementById('create_question').style.display='block'">Tao
+                cau
+                hoi</button>
 
             <div class="list_question">
                 <ul>
@@ -89,8 +96,8 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             <div class="modal-body">
                                 ...
@@ -128,32 +135,31 @@
                 </div>
                 <div class="box_build_question">
                     <span>
-                                <input class="basic-slide" id="name" type="text" placeholder="Your best name" />
-                                <label for="name">So diem</label>
-                            </span>
+                        <input class="basic-slide" id="name" type="text" placeholder="Your best name" />
+                        <label for="name">So diem</label>
+                    </span>
                     <span>
-                                <input class="basic-slide" id="name" type="text" placeholder="Your best name" />
-                                <label for="name">So phuts</label>
-                            </span>
+                        <input class="basic-slide" id="name" type="text" placeholder="Your best name" />
+                        <label for="name">So phuts</label>
+                    </span>
                     <span>
-                                <ul class="unstyled centered">
-                                    <li>
-                                        <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox"
-                                            value="value1" />
-                                        <label for="styled-checkbox-1">Checkbox</label>
-                                    </li>
-                                    <li>
-                                        <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox"
-                                            value="value2" checked />
-                                        <label for="styled-checkbox-2">CSS Only</label>
-                                    </li>
-                                    <li>
-                                        <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox"
-                                            value="value3" checked />
-                                        <label for="styled-checkbox-3">CSS Only</label>
-                                    </li>
-                                </ul>
-                            </span>
+                        <ul class="unstyled centered">
+                            <li>
+                                <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" value="value1" />
+                                <label for="styled-checkbox-1">Checkbox</label>
+                            </li>
+                            <li>
+                                <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2"
+                                    checked />
+                                <label for="styled-checkbox-2">CSS Only</label>
+                            </li>
+                            <li>
+                                <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" value="value3"
+                                    checked />
+                                <label for="styled-checkbox-3">CSS Only</label>
+                            </li>
+                        </ul>
+                    </span>
                 </div>
             </div>
             <div class="question">
